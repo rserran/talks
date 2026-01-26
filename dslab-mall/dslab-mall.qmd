@@ -65,3 +65,19 @@ spanish_reviews = top_reviews.filter(pl.col("extract") == "spanish")
 ```{python}
 spanish_reviews.llm.translate("text", "english")
 ```
+
+```{python}
+from chatlas import ChatBedrockAnthropic
+chat = ChatBedrockAnthropic(
+    model = "us.anthropic.claude-haiku-4-5-20251001-v1:0", 
+    aws_profile = "claude"
+)
+```
+
+```{python}
+user_reviews.llm.use(chat)
+```
+
+```{python}
+user_reviews.head(100).llm.sentiment("text")
+```

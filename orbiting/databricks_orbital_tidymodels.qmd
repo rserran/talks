@@ -3,8 +3,7 @@ title: Databricks + Tidymodels + Orbital
 subtitle: Simple use case example
 author: Edgar Ruiz - Posit
 date: 2025-05-22
-format: html
-editor: visual
+format: gfm
 execute:
   eval: true
 toc: true  

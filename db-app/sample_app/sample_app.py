@@ -8,7 +8,7 @@ data = pd.DataFrame({'x': [x for x in range(30)],
 with gr.Blocks(css='footer {visibility: hidden}') as gradio_app:
     with gr.Row():
         with gr.Column(scale=3):
-            gr.Markdown('# Hello world!')
+            gr.Markdown('# New title')
             gr.ScatterPlot(value=data, height=400, width=700,
                            container=False, x='x', y='y',
                            y_title='Fun with data', x_title='Apps')

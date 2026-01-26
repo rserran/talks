@@ -3,8 +3,7 @@ title: Databricks + Scikit Learn + Orbital
 subtitle: Simple use case example
 author: Edgar Ruiz - Posit
 date: 2025-05-20
-format: html
-editor: visual
+format: gfm
 execute:
   eval: true
 toc: true  

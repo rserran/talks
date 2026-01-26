@@ -1,0 +1,67 @@
+---
+title: "dslab-mall"
+format: html
+---
+
+```{python}
+import polars as pl
+gh_base = 'https://raw.githubusercontent.com/rfordatascience/tidytuesday/main/data/2020/2020-05-05/'
+
+```
+
+```{python}
+critics = pl.read_csv(gh_base + 'critic.tsv', separator = '\t')
+
+critics
+```
+
+```{python}
+import mall
+
+critics.llm.use("ollama", "llama3.2")
+```
+
+```{python}
+critics.llm.sentiment("text")
+```
+
+```{python}
+critics = critics.llm.sentiment("text")
+```
+
+```{python}
+critics.sort("grade", descending = False)
+```
+
+```{python}
+user_reviews = pl.read_csv(gh_base + 'user_reviews.tsv', separator = '\t')
+user_reviews
+```
+
+```{python}
+user_reviews.head(100).llm.extract("text", "language (english, spanish, etc)")
+```
+
+```{python}
+top_reviews = user_reviews.head(100).llm.extract("text", "language (english, spanish, etc)")
+```
+
+```{python}
+top_reviews.group_by("extract").count()
+```
+
+```{python}
+top_reviews.filter(pl.col("extract") == "russian")
+```
+
+```{python}
+top_reviews.filter(pl.col("extract") != "english")
+```
+
+```{python}
+spanish_reviews = top_reviews.filter(pl.col("extract") == "spanish")
+```
+
+```{python}
+spanish_reviews.llm.translate("text", "english")
+```
